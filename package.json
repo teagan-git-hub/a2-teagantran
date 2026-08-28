@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "a2-teagantran",
+  "version": "0.1",
+  "description": "2nd assignment for Webware",
+  "author": "Teagan Tran",
   "scripts": {
     "start": "node server.js"
   },
