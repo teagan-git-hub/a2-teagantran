@@ -19,7 +19,12 @@ const submit = async function( event ) {
 
   const arr = await response.json()
 
-  console.log( arr )
+  ul.innerHTML = ''
+  for ( let item of arr ) {
+    const li = document.createElement('li')
+    li.innerText = item.yourname
+    ul.appendChild( li )
+  }
 }
 
 window.onload = function() {
