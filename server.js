@@ -39,13 +39,14 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
+    // console.log( JSON.parse( dataString ) )
     // ... do something with the data here!!!
+    appdata.push( JSON.parse( dataString ) )
         
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
 
     // change this to incorporate data
-    response.end('test')
+    response.end( JSON.stringify( appdata ) )
   })
 }
 
