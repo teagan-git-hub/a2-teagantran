@@ -17,9 +17,9 @@ const submit = async function( event ) {
     body 
   })
 
-  const text = await response.text()
+  const arr = await response.json()
 
-  console.log( 'text:', text )
+  console.log( arr )
 }
 
 window.onload = function() {
