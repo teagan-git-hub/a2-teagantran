@@ -1,4 +1,5 @@
 // FRONT-END (CLIENT) JAVASCRIPT HERE
+let ul = null
 
 const submit = async function( event ) {
   // stop form submission from trying to load
@@ -24,4 +25,6 @@ const submit = async function( event ) {
 window.onload = function() {
   const button = document.querySelector('button')
   button.onclick = submit
+  ul = document.createElement( 'ul' )
+  document.body.appendChild( ul )
 }
