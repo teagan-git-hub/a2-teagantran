@@ -9,8 +9,8 @@ const submit = async function( event ) {
   event.preventDefault()
 
   const websiteInput = document.querySelector('#website'),
-  const usernameInput = document.querySelector( '#username' ),
-  const passwordInput = document.querySelector( '#password' ),
+        usernameInput = document.querySelector( '#username' ),
+        passwordInput = document.querySelector( '#password' ),
 
   const payload = {
     website: websiteInput.value,
