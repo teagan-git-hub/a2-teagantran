@@ -8,8 +8,11 @@ const submit = async function( event ) {
   // remains to this day
   event.preventDefault()
   
-  const input = document.querySelector( '#yourname' ),
-        json = { yourname: input.value },
+  const username_input = document.querySelector( '#username' ),
+        json = { username: username_input.value },
+        body = JSON.stringify( json )
+  const password_input = document.querySelector( '#password' ),
+        json = { password: password_input.value },
         body = JSON.stringify( json )
 
   const response = await fetch( '/submit', {
