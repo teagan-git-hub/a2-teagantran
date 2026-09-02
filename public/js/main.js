@@ -25,7 +25,9 @@ const submit = async function( event ) {
   ul.innerHTML = ''
   for ( let item of arr ) {
     const li = document.createElement('li')
-    li.innerText = item.yourname
+    const name = item.username ?? item.yourname ?? ''
+    const pass = item.password ?? ''
+    li.innerText = name + (pass ? ' — ' + pass : '')
     ul.appendChild( li )
   }
 }
