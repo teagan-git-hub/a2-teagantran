@@ -7,17 +7,21 @@ const submit = async function( event ) {
   // this was the original browser behavior and still
   // remains to this day
   event.preventDefault()
-  
-  const username_input = document.querySelector( '#username' ),
-        json = { username: username_input.value },
-        body = JSON.stringify( json )
-  const password_input = document.querySelector( '#password' ),
-        json = { password: password_input.value },
-        body = JSON.stringify( json )
 
+  const websiteInput = document.querySelector('#website'),
+  const usernameInput = document.querySelector( '#username' ),
+  const passwordInput = document.querySelector( '#password' ),
+
+  const payload = {
+    website: websiteInput.value,
+    username: usernameInput.value,
+    password: passwordInput.value
+  }
+  
   const response = await fetch( '/submit', {
     method:'POST',
-    body 
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
   })
 
   const arr = await response.json()
