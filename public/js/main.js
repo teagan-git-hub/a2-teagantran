@@ -8,29 +8,29 @@ const submit = async function( event ) {
   // remains to this day
   event.preventDefault()
 
-  const websiteInput = document.querySelector('#website'),
-        usernameInput = document.querySelector( '#username' ),
-        passwordInput = document.querySelector( '#password' ),
-
-  const payload = {
-    website: websiteInput.value,
-    username: usernameInput.value,
-    password: passwordInput.value
-  }
+  const website_input = document.querySelector( '#website' ),
+        json = { website: website_input.value },
+        body = JSON.stringify( json )
+  const username_input = document.querySelector( '#username' ),
+        json = { username: username_input.value },
+        body = JSON.stringify( json )
+  const password_input = document.querySelector( '#password' ),
+        json = { password: password_input.value },
+        body = JSON.stringify( json )
   
   const response = await fetch( '/submit', {
     method:'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
+    body
   })
 
   const arr = await response.json()
   ul.innerHTML = ''
   for ( let item of arr ) {
     const li = document.createElement('li')
+    const website = item.website ?? ''
     const name = item.username ?? item.yourname ?? ''
     const pass = item.password ?? ''
-    li.innerText = name + (pass ? ' — ' + pass : '')
+    li.innerText = website + ' — ' + name + (pass ? ' — ' + pass : '')
     ul.appendChild( li )
   }
 }
