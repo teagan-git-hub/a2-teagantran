@@ -30,9 +30,8 @@ const submit = async function( event ) {
     const website = item.website ?? ''
     const name = item.username ?? ''
     const pass = item.password ?? ''
-    li.innerText = website + ' — ' + name + (pass ? ' — ' + pass : '')
+    li.innerText = (website ? ' — ' + website : '') + (name ? ' — ' + name : '') + (pass ? ' — ' + pass : '')
     ul.appendChild( li )
-  }
 }
 
 window.onload = function() {
