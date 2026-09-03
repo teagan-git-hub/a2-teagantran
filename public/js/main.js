@@ -37,7 +37,6 @@ const submit = async function( event ) {
 
 window.onload = function() {
   const button = document.querySelector('button')
-  console.log( 'button', button )
   button.onclick = submit
   ul = document.createElement( 'ul' )
   document.body.appendChild( ul )

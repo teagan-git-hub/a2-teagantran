@@ -90,6 +90,11 @@ You'll need to use some type of collaborative software that will enable you both
 Sample Readme (delete the above when you're ready to submit, and modify the below so with your links and descriptions)
 ---
 
+1. Carignan
+2. User can submit empty forms, which currently gets added. User must press submit to see previous inputs. Bad CSS.
+3. I didn't think about how the user might want to see their info before pressing submit.
+4. I would change the website to allow the user to see their saved info when the website loads, and make sure empty fields can't be inputted.
+
 ## Your Web Application Title
 Include a very brief summary of your project here. Be sure to include the CSS positioning technique you used, and any required instructions to use your application.
 
