@@ -8,7 +8,6 @@ const http = require( 'http' ),
       port = 3000
 
 const appdata = [
-  { 'website': 'website', 'username': 'username', 'password': 'password' },
   { 'website': 'google.com', 'username': 'main@gmail.com', 'password': '12' },
   { 'website': 'youtube.com', 'username': 'sub@gmail.com', 'password': '123' },
   { 'website': 'hub.wpi.edu', 'username': 'student@wpi.edu', 'password': '1234'} 
