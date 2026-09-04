@@ -28,6 +28,7 @@ form button {
   width: min(100%, 600px);
   align-items: center;
   margin-inline: auto;
+  margin-top: 2rem;
 }
 
 .output-row {
