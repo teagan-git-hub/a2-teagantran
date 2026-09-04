@@ -1,5 +1,9 @@
 body {
-  background: linear-gradient(to right, purple, plum);
+  min-height: 100vh;
+  margin: 0;
+  background: linear-gradient(75deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+  background-attachment: fixed;
+  background-size: cover;
   color:white;
   font-family: 'Times New Roman', Times, serif;
   text-align: center;
