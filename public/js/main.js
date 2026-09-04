@@ -30,8 +30,16 @@ const submit = async function( event ) {
     const website = item.website ?? ''
     const name = item.username ?? ''
     const pass = item.password ?? ''
-    child.innerText = (website ? website : '') + (name ? ' — ' + name : '') + (pass ? ' — ' + pass : '')
-    if ( child.innerText.length > 0 ) {
+    child.classList.add('output-row')
+
+    for ( let value of [ website, name, pass ] ) {
+      const field = document.createElement('div')
+      field.classList.add('output-cell')
+      field.innerText = value
+      child.appendChild(field)
+    }
+
+    if ( website || name || pass ) {
       container.appendChild( child )
     }
   }

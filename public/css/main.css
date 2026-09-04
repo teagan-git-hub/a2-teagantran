@@ -3,3 +3,37 @@ body {
   color:white;
   font-family: 'Times New Roman', Times, serif;
 }
+
+form {
+  --label-width: 100px;
+  --field-gap: 1rem;
+
+  display: grid;
+  grid-template-columns: var(--label-width) minmax(200px, 1fr);
+  gap: var(--field-gap);
+  max-width: 500px;
+}
+
+form input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+form button {
+  grid-column: 2;
+}
+
+.container {
+  width: min(100%, 600px);
+}
+
+.output-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  width: 100%;
+}
+
+.output-cell {
+  overflow-wrap: anywhere;
+}
