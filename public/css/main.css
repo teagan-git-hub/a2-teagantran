@@ -22,6 +22,7 @@ form {
 form input {
   width: 100%;
   box-sizing: border-box;
+  border-radius: 5px
 }
 
 form button {
@@ -29,10 +30,13 @@ form button {
 }
 
 .container {
-  width: min(100%, 600px);
+  width: min(100%, 700px);
   align-items: center;
   margin-inline: auto;
   margin-top: 2rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  padding: 1rem;
 }
 
 .output-row {
