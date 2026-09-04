@@ -35,6 +35,11 @@ const submit = async function( event ) {
   renderEntries( arr )
 }
 
+const loadEntries = async function() {
+  const response = await fetch( '/data' )
+  renderEntries( await response.json() )
+}
+
 const renderEntries = function( arr ) {
   container.innerHTML = ''
 
@@ -104,4 +109,5 @@ window.onload = function() {
   container = document.createElement( 'div' )
   container.classList.add( 'container' )
   document.body.appendChild( container )
+  loadEntries()
 }

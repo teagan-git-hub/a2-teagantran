@@ -31,6 +31,12 @@ const server = http.createServer( function( request,response ) {
 })
 
 const handleGet = function( request, response ) {
+  if( request.url === '/data' ) {
+    response.writeHead( 200, {'Content-Type': 'application/json'} )
+    response.end( JSON.stringify( appdata ) )
+    return
+  }
+
   const filename = dir + request.url.slice( 1 ) 
 
   if( request.url === '/' ) {
