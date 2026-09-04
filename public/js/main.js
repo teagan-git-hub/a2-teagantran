@@ -23,21 +23,36 @@ const submit = async function( event ) {
   })
 
   const arr = await response.json()
+  renderEntries( arr )
+}
 
+const renderEntries = function( arr ) {
   container.innerHTML = ''
   for ( let item of arr ) {
     const child = document.createElement('div')
     const website = item.website ?? ''
     const name = item.username ?? ''
     const pass = item.password ?? ''
+    const passwordMatchesPrevious = item.passwordMatchesPrevious ?? false
     child.classList.add('output-row')
 
-    for ( let value of [ website, name, pass ] ) {
+    for ( let value of [ website, name, pass, passwordMatchesPrevious ] ) {
       const field = document.createElement('div')
       field.classList.add('output-cell')
       field.innerText = value
       child.appendChild(field)
     }
+
+    const deleteButton = document.createElement('button')
+    deleteButton.type = 'button'
+    deleteButton.innerText = 'Delete'
+    deleteButton.onclick = async function() {
+      const response = await fetch( '/delete?id=' + encodeURIComponent( item.id ), {
+        method: 'DELETE'
+      })
+      renderEntries( await response.json() )
+    }
+    child.appendChild( deleteButton )
 
     if ( website || name || pass ) {
       container.appendChild( child )

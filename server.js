@@ -8,16 +8,23 @@ const http = require( 'http' ),
       port = 3000
 
 const appdata = [
+  { 'website': 'website', 'username': 'username', 'password': 'password' },
   { 'website': 'google.com', 'username': 'main@gmail.com', 'password': '12' },
   { 'website': 'youtube.com', 'username': 'sub@gmail.com', 'password': '123' },
   { 'website': 'hub.wpi.edu', 'username': 'student@wpi.edu', 'password': '1234'} 
 ]
+appdata.forEach( function( item, index ) {
+  item.id = index
+})
+let nextId = appdata.length
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
     handleGet( request, response )    
   }else if( request.method === 'POST' ){
     handlePost( request, response ) 
+  }else if( request.method === 'DELETE' ){
+    handleDelete( request, response )
   }
 })
 
@@ -39,15 +46,33 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    // console.log( JSON.parse( dataString ) )
-    // ... do something with the data here!!!
-    appdata.push( JSON.parse( dataString ) )
-        
+    const entry = JSON.parse( dataString )
+    entry.id = nextId
+    nextId += 1
+    entry.passwordMatchesPrevious = appdata.some( function( item ) {
+      return item.password === entry.password
+    })
+    appdata.push( entry )
+    
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
 
     // change this to incorporate data
     response.end( JSON.stringify( appdata ) )
   })
+}
+
+const handleDelete = function( request, response ) {
+  const id = Number( new URL( request.url, 'http://localhost' ).searchParams.get( 'id' ) )
+  const index = appdata.findIndex( function( item ) {
+    return item.id === id
+  })
+
+  if( index !== -1 ) {
+    appdata.splice( index, 1 )
+  }
+
+  response.writeHead( 200, "OK", {'Content-Type': 'application/json'} )
+  response.end( JSON.stringify( appdata ) )
 }
 
 const sendFile = function( response, filename ) {
