@@ -60,3 +60,13 @@ form button {
 .output-action-placeholder {
   visibility: hidden;
 }
+
+#website {
+  border-color: blueviolet;
+}
+#password {
+  border-color: blueviolet;
+}
+#username {
+  border-color: blueviolet;
+}
