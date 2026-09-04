@@ -25,6 +25,8 @@ const server = http.createServer( function( request,response ) {
     handlePost( request, response ) 
   }else if( request.method === 'DELETE' ){
     handleDelete( request, response )
+  }else if( request.method === 'PUT' ){
+    handleEdit( request, response )
   }
 })
 
@@ -61,18 +63,50 @@ const handlePost = function( request, response ) {
   })
 }
 
+// deleting an entry function
 const handleDelete = function( request, response ) {
   const id = Number( new URL( request.url, 'http://localhost' ).searchParams.get( 'id' ) )
   const index = appdata.findIndex( function( item ) {
     return item.id === id
   })
 
+  // if the entry is found, remove it from the array
   if( index !== -1 ) {
     appdata.splice( index, 1 )
   }
 
   response.writeHead( 200, "OK", {'Content-Type': 'application/json'} )
   response.end( JSON.stringify( appdata ) )
+}
+
+// editing an entry function
+const handleEdit = function( request, response ) {
+  let dataString = ''
+
+  request.on( 'data', function( data ) {
+    dataString += data
+  })
+
+  // when the request is finished, parse the data and update the entry
+  request.on( 'end', function() {
+    const editedEntry = JSON.parse( dataString )
+    const entry = appdata.find( function( item ) {
+      return item.id === editedEntry.id
+    })
+
+    // if the entry is found, update its properties and check if the password matches any previous entries
+    if( entry ) {
+      entry.website = editedEntry.website
+      entry.username = editedEntry.username
+      entry.password = editedEntry.password
+      entry.passwordMatchesPrevious = appdata.some( function( item ) {
+        return item.id !== entry.id && item.password === entry.password
+      })
+    }
+
+    response.writeHead( 200, "OK", {'Content-Type': 'application/json'} )
+    response.end( JSON.stringify( appdata ) )
+  })
 }
 
 const sendFile = function( response, filename ) {

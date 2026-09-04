@@ -32,11 +32,19 @@ form button {
 
 .output-row {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr)) auto;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) auto auto;
   gap: 1rem;
   width: 100%;
 }
 
 .output-cell {
   overflow-wrap: anywhere;
+}
+
+.output-header {
+  font-weight: bold;
+}
+
+.output-action-placeholder {
+  visibility: hidden;
 }
