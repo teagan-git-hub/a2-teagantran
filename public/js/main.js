@@ -1,5 +1,5 @@
 // FRONT-END (CLIENT) JAVASCRIPT HERE
-let ul = null
+let container = null
 
 const submit = async function( event ) {
   // stop form submission from trying to load
@@ -24,15 +24,15 @@ const submit = async function( event ) {
 
   const arr = await response.json()
 
-  ul.innerHTML = ''
+  container.innerHTML = ''
   for ( let item of arr ) {
-    const li = document.createElement('li')
+    const child = document.createElement('div')
     const website = item.website ?? ''
     const name = item.username ?? ''
     const pass = item.password ?? ''
-    li.innerText = (website ? ' — ' + website : '') + (name ? ' — ' + name : '') + (pass ? ' — ' + pass : '')
-    if ( li.innerText.length > 0 ) {
-      ul.appendChild( li )
+    child.innerText = (website ? website : '') + (name ? ' — ' + name : '') + (pass ? ' — ' + pass : '')
+    if ( child.innerText.length > 0 ) {
+      container.appendChild( child )
     }
   }
 }
@@ -40,6 +40,7 @@ const submit = async function( event ) {
 window.onload = function() {
   const button = document.querySelector('button')
   button.onclick = submit
-  ul = document.createElement( 'ul' )
-  document.body.appendChild( ul )
+  container = document.createElement( 'div' )
+  container.classList.add( 'container' )
+  document.body.appendChild( container )
 }
